@@ -39,9 +39,11 @@ body {
   left: 18px;
   bottom: 18px;
   display: flex;
+  flex-direction: column; /* makes it vertical */
   gap: 8px;
   z-index: 60;
 }
+
 .btn {
   background: var(--blue);
   color: #fff;
@@ -196,3 +198,4 @@ th {
     margin-left: 0;
   }
 }
+
