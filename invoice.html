@@ -1,278 +1,170 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SatyaBhanumats-Invoice</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root{--bg:#f4f7fb;--blue:#0f58d6;--muted:#6b7280;--green:#16a34a;--red:#dc2626}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Poppins,Arial,Helvetica,sans-serif;background:var(--bg);color:#111;padding:20px}
-    .wrap{max-width:980px;margin:18px auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 12px 40px rgba(12,40,80,0.06);position:relative}
-
-    /* Editable Highlight */
-    .editable{padding:2px 4px;border-radius:4px}
-    .editable:hover{background:#e9f2ff;cursor:text}
-
-    .controls{position:fixed;left:18px;bottom:18px;display:flex;gap:8px;z-index:60}
-    .btn{background:var(--blue);color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600}
-    .btn.ghost{background:#fff;color:var(--blue);border:1px solid #e6f0ff}
-
-    .head{display:flex;gap:18px;align-items:flex-start}
-    .brand h2{margin:0;color:var(--blue)}
-    .brand .muted{color:var(--muted);font-size:13px;margin-top:6px}
-    .meta{margin-left:auto;text-align:right;color:var(--muted)}
-
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
-    .card{background:#fbfdff;padding:12px;border-radius:10px;border:1px solid #eef6ff}
-    .card h4{margin:0 0 8px 0}
-
-    table{width:100%;border-collapse:collapse;margin-top:14px}
-    th,td{padding:10px;border:1px solid #eef6ff;font-size:14px;vertical-align:top}
-    th{background:#f6fbff;color:var(--blue);font-weight:700}
-    td[contenteditable]{background:#fff}
-
-    .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
-
-    .totals{width:360px;margin-left:auto;margin-top:18px}
-    .totals td{padding:8px;border-bottom:1px solid #f1f6ff}
-    .grand{font-weight:900;font-size:20px;color:#0b3b8c}
-
-    .bank{margin-top:16px;padding:12px;border-radius:8px;background:#fbfdff;border:1px solid #eef6ff}
-    .sign-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
-    .sig-box{width:300px;height:70px;border:1px dashed #eef6ff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
-
-    .stamp{position:absolute;right:60px;top:120px;width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;transform:rotate(-18deg);opacity:0;pointer-events:none;font-size:26px}
-    .stamp.paid{color:var(--green);border:10px solid rgba(22,163,74,0.08);opacity:0.92}
-    .stamp.unpaid{color:var(--red);border:10px solid rgba(220,38,38,0.08);opacity:0.92}
-
-    @media (max-width:880px){
-      .grid{grid-template-columns:1fr}
-      .stamp{display:none}
-      .totals{width:100%;margin-left:0}
-    }
-  </style>
-</head>
-<body>
-
-  <div class="wrap" id="invoiceArea">
-
-    <div class="head">
-      <div class="brand">
-        <h2><img src="1.jpeg" alt="SATYABHANU MATS" style="height:120px;"></h2>
-        <div class="muted">D.NO 45-138/6, 1ST FLOOR, GSLNR COMPLEX, <br>
-          REVENUE WARD NO 20, K.P ROAD, ONGOLE, <br>
-          PRAKASAM, ONGOLE, ANDHRA PRADESH — 523001</div>
-        <div class="muted">GSTIN: 37HYGPK3629Q1ZK | PH: +91 7989801323</div>
-      </div>
-
-      <div class="meta">
-        <div style="font-weight:800;color:var(--blue);font-size:18px">Tax Invoice</div>
-
-        <!-- Editable Invoice No & Date added here -->
-        <div style="margin-top:6px">
-          Invoice #: <strong id="invNo" class="editable" contenteditable>SBM25-0001</strong>
-        </div>
-        <div>
-          Date: <strong id="invDate" class="editable" contenteditable></strong>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SatyaBhanuMats-Invoice</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="invoice.css">
+  </head>
+  <body>
+    <div class="wrap" id="invoiceArea">
+      <div class="head">
+        <div class="brand">
+          <h2><img src="1.jpg" style="height: 120px" /></h2>
+          <div class="muted">
+            D.NO 45-138/6, 1ST FLOOR, GSLNR COMPLEX,<br />
+            K.P ROAD, ONGOLE, ANDHRA PRADESH — 523001
+          </div>
+          <div class="muted">GSTIN: 37HYGPK3629Q1ZK | PH: +91 7989801323</div>
         </div>
 
-        <div>Place of Supply: Andhra Pradesh</div>
+        <div class="meta">
+          <div style="font-weight: 800; color: var(--blue); font-size: 18px">
+            Tax Invoice
+          </div>
+
+          <div style="margin-top: 6px">
+            Invoice #:
+            <strong id="invNo" class="editable" contenteditable
+              >SBM25-0001</strong
+            >
+          </div>
+          <div>
+            Date:
+            <strong id="invDate" class="editable" contenteditable></strong>
+          </div>
+          <div style="margin-top: 6px">
+            Due Date<strong id="invNo" class="editable" contenteditable
+              >06-12-2025</strong
+            >
+          </div>
+          <div>Place of Supply: Andhra Pradesh</div>
+        </div>
       </div>
-    </div>
 
-    <div class="grid">
-      <div class="card">
-        <h4>Billing Address</h4>
-        <div contenteditable class="muted">PEARL DISTILLERY PVT. LTD.<br>OLD SINGARAYAKONDA, PRAKASAM DISTRICT,<br>ANDHRA PRADESH, INDIA<br>GST NO: 37AABCP9427C1ZG</div>
+      <div class="grid">
+        <div class="card">
+          <h4>Billing Address</h4>
+          <div contenteditable class="muted">
+            PEARL DISTILLERY PVT. LTD.<br />OLD SINGARAYAKONDA, PRAKASAM
+            DISTRICT,<br />ANDHRA PRADESH, INDIA<br />GST NO: 37AABCP9427C1ZG
+          </div>
+        </div>
+        <div class="card">
+          <h4>Shipping Address</h4>
+          <div contenteditable class="muted">
+            PEARL DISTILLERY PVT. LTD.<br />OLD SINGARAYAKONDA, PRAKASAM
+            DISTRICT,<br />ANDHRA PRADESH, INDIA
+          </div>
+        </div>
       </div>
 
-      <div class="card">
-        <h4>Shipping Address</h4>
-        <div contenteditable class="muted">PEARL DISTILLERY PVT. LTD.<br>OLD SINGARAYAKONDA, PRAKASAM DISTRICT,<br>ANDHRA PRADESH, INDIA</div>
-      </div>
-    </div>
-
-    <table id="itemsTable">
-      <thead>
-        <tr>
-          <th style="width:36px">#</th>
-          <th>Item & Description</th>
-          <th style="width:110px">HSN/SAC</th>
-          <th style="width:100px">Rate</th>
-          <th style="width:80px">Qty</th>
-          <th style="width:100px">GST %</th>
-          <th style="width:120px">Amount</th>
-          <th style="width:60px"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td class="rownum">1</td>
-          <td contenteditable>SunScreen Roller Blinds — 2073 Series<br><span style="font-size:13px;color:var(--muted)">Exclusive Blockout Collection</span></td>
-          <td contenteditable>63039200</td>
-          <td contenteditable>220</td>
-          <td contenteditable>88</td>
-          <td contenteditable>18</td>
-          <td class="right amount">22844.80</td>
-          <td class="right"><button class="btn ghost remove">Del</button></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="actions">
-      <button class="btn ghost" id="addRow">+ Add Item</button>
-    </div>
-
-    <div class="totals" id="totalsBox">
-      <table>
-        <tr><td>Sub Total</td><td class="right" id="subTotal">₹ 19,360.00</td></tr>
-        <tr><td>SGST</td><td class="right" id="sgst">₹ 1,742.40</td></tr>
-        <tr><td>CGST</td><td class="right" id="cgst">₹ 1,742.40</td></tr>
-        <tr><td>Round Off</td><td class="right" id="roundOff">₹ 0.20</td></tr>
-        <tr><td class="grand">Total Amount</td><td class="right grand" id="grandTotal">₹ 22,845.00</td></tr>
+      <table id="itemsTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item</th>
+            <th>HSN</th>
+            <th>Rate</th>
+            <th>Qty</th>
+            <th>GST %</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
       </table>
+
+      <div class="actions">
+        <button class="btn ghost" id="addRow">+ Add Item</button>
+      </div>
+
+      <div class="totals" id="totalsBox">
+        <table>
+          <tr>
+            <td>Sub Total</td>
+            <td id="subTotal">₹ 0.00</td>
+          </tr>
+          <tr>
+            <td>SGST</td>
+            <td id="sgst">₹ 0.00</td>
+          </tr>
+          <tr>
+            <td>CGST</td>
+            <td id="cgst">₹ 0.00</td>
+          </tr>
+          <tr>
+            <td>Round Off</td>
+            <td id="roundOff">₹ 0.00</td>
+          </tr>
+          <tr>
+            <td class="grand">Grand Total</td>
+            <td class="grand" id="grandTotal">₹ 0.00</td>
+          </tr>
+          <tr>
+            <td>Total Amount Received</td>
+            <td id="invNo" class="editable" contenteditable>₹ 0.00</td>
+          </tr>
+          <tr>
+            <td>Due Amount</td>
+            <td id="invNo" class="editable" contenteditable>₹ 0.00</td>
+          </tr>
+        </table>
+      </div>
+      <div class="totals" id="totalsBox">
+        <h6>Due Amount (in words)</h6>
+        <h5 id="invNo" class="editable" contenteditable>
+          Rupees Five Thousand Only
+        </h5>
+      </div>
+      <div class="bank">
+        <strong>Bank & Payments Details:</strong><br />
+        Bank: SBI BANK <br />
+        Account Number: 41789126113<br />
+        IFSC: SBIN0004246<br />
+        Account Holder: SATYABHANU MATS<br />
+        Account Type: Current
+        <div class="totals" id="totalsBox">
+          <h6>Additional Notes</h6>
+          <h6 id="invNo" class="editable" contenteditable>
+            1. Width-5Ft & Height-6 Ft
+          </h6>
+          <h6 id="invNo" class="editable" contenteditable>
+            2. Width-4.5Ft & Height-6 Ft
+          </h6>
+          <h6 id="invNo" class="editable" contenteditable>
+            Gray Cover 2 Sides
+          </h6>
+        </div>
+      </div>
+
+      <div class="sign-row">
+        <div>satyabhanumats.com</div>
+        <div class="sig-box">(Authorised Signatory)</div>
+      </div>
+
+      <div id="stamp" class="stamp unpaid">NOT PAID</div>
     </div>
 
-    <div class="bank">
-      <strong>Bank & Payments Details:</strong><br>
-      Bank: SBI BANK <br>
-      Account Number: 41789126113<br>
-      IFSC: SBIN0004246<br>
-      Account Holder: SATYABHANU MATS<br>
-      Account Type: Current
+    <div class="controls">
+      <button class="btn" id="downloadPdf">Download PDF</button>
+      <button class="btn ghost" id="exportPng">Export PNG</button>
+      <button class="btn ghost" id="saveInvoice">Save Invoice</button>
+      <button class="btn ghost" id="togglePaid">Mark Paid</button>
+      <button class="btn ghost" onclick="location.href='admin.html'">
+        Admin Panel
+      </button>
     </div>
 
-    <div class="sign-row">
-      <div style="color:var(--muted)">satyabhanumats.com</div>
-      <div class="sig-box">(Authorised Signatory)</div>
-    </div>
-
-    <div id="stamp" class="stamp unpaid">NOT PAID</div>
-  </div>
-
-  <!-- Controls -->
-  <div class="controls">
-    <button class="btn" id="downloadPdf">Download PDF</button>
-    <button class="btn ghost" id="exportPng">Export PNG</button>
-    <button class="btn ghost" id="togglePaid">Mark Paid</button>
-  </div>
-
-  <!-- Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <script>
-    // Set default date (only if user has not edited)
-    const dateEl = document.getElementById('invDate');
-    if(dateEl.textContent.trim() === ""){
-      dateEl.textContent = new Date().toLocaleDateString('en-GB');
-    }
-
-    function toNumber(v){
-      const n = parseFloat(String(v).replace(/[₹,\\s]/g, ''));
-      return isNaN(n)?0:n;
-    }
-    function formatINR(n){
-      return '₹ ' + Number(n).toFixed(2).replace(/\\B(?=(\\d{3})+(?!\\d))/g, ",");
-    }
-
-    function recalc(){
-      const tbody = document.querySelector('#itemsTable tbody');
-      let sub = 0;
-      tbody.querySelectorAll('tr').forEach((tr, i)=>{
-        tr.querySelector('.rownum').textContent = i+1;
-        const rate = toNumber(tr.children[3].innerText);
-        const qty = toNumber(tr.children[4].innerText);
-        const gst = toNumber(tr.children[5].innerText);
-        const amount = rate * qty;
-        tr.querySelector('.amount').textContent = amount.toFixed(2);
-        sub += amount;
-      });
-
-      const sgst = +(sub * 0.09).toFixed(2);
-      const cgst = +(sub * 0.09).toFixed(2);
-      const totalBeforeRound = sub + sgst + cgst;
-      const rounded = Math.round(totalBeforeRound * 100) / 100;
-      const roundOff = +(rounded - totalBeforeRound).toFixed(2);
-      const grand = +(sub + sgst + cgst + roundOff).toFixed(2);
-
-      document.getElementById('subTotal').textContent = formatINR(sub);
-      document.getElementById('sgst').textContent = formatINR(sgst);
-      document.getElementById('cgst').textContent = formatINR(cgst);
-      document.getElementById('roundOff').textContent = formatINR(roundOff);
-      document.getElementById('grandTotal').textContent = formatINR(grand);
-    }
-
-    setTimeout(recalc, 200);
-
-    document.querySelector('#itemsTable tbody').addEventListener('input', recalc);
-
-    document.getElementById('addRow').addEventListener('click', ()=>{
-      const tbody = document.querySelector('#itemsTable tbody');
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="rownum"></td>
-        <td contenteditable>New item</td>
-        <td contenteditable>HSN</td>
-        <td contenteditable>0</td>
-        <td contenteditable>1</td>
-        <td contenteditable>0</td>
-        <td class="right amount">0.00</td>
-        <td class="right"><button class="btn ghost remove">Del</button></td>
-      `;
-      tbody.appendChild(tr);
-      recalc();
-    });
-
-    document.querySelector('#itemsTable tbody').addEventListener('click', e=>{
-      if(e.target.classList.contains('remove')){
-        e.target.closest('tr').remove();
-        recalc();
-      }
-    });
-
-    document.getElementById('exportPng').addEventListener('click', ()=>{
-      html2canvas(document.getElementById('invoiceArea'), {scale:2}).then(canvas=>{
-        const a = document.createElement('a');
-        a.href = canvas.toDataURL('image/png');
-        a.download = 'Invoice-V4.png';
-        a.click();
-      });
-    });
-
-    document.getElementById('downloadPdf').addEventListener('click', ()=>{
-      html2canvas(document.getElementById('invoiceArea'), {scale:2}).then(canvas=>{
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jspdf.jsPDF('p','mm','a4');
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const imgHeight = canvas.height * pageWidth / canvas.width;
-        pdf.addImage(imgData,'PNG',0,0,pageWidth,imgHeight);
-        pdf.save('SatyaBhanuMats-Invoice.pdf');
-      });
-    });
-
-    document.getElementById('togglePaid').addEventListener('click', function(){
-      const stamp = document.getElementById('stamp');
-      if(stamp.classList.contains('paid')){
-        stamp.classList.remove('paid');
-        stamp.classList.add('unpaid');
-        stamp.textContent = 'NOT PAID';
-        this.textContent = 'Mark Paid';
-      }else{
-        stamp.classList.remove('unpaid');
-        stamp.classList.add('paid');
-        stamp.textContent = 'PAID';
-        this.textContent = 'Mark Not Paid';
-      }
-    });
-
-    setInterval(recalc,1200);
-  </script>
-
-</body>
-
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script src="invoice.js"></script>
+  </body>
 </html>
