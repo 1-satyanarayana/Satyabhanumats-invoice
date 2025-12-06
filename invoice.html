@@ -16,19 +16,30 @@
   position: absolute;
   top: -60px;
   right: 0;
-  width: 120px;            /* fixed square width */
-  height: 120px;           /* fixed square height */
-  display: flex;           /* center content */
+  width: 120px;
+  height: 120px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 0, 0, 0.1); /* semi-transparent red box */
-  color: red;
   font-size: 18px;
   font-weight: bold;
-  border: 2px solid red;   /* border for stamp effect */
-  transform: rotate(-15deg);
+  border: 2px solid;
   text-align: center;
+  transform: rotate(-15deg);
   box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* NOT PAID style */
+.stamp.unpaid {
+  color: red;
+  border-color: red;
+}
+
+/* PAID style */
+.stamp.paid {
+  color: green;
+  border-color: green;
 }
 </style>
   </head>
@@ -221,6 +232,7 @@ updateDueAmount();
     </script>
   </body>
 </html>
+
 
 
 
