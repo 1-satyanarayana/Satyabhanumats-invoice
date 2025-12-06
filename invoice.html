@@ -11,6 +11,26 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="invoice.css">
     <link rel="stylesheet" href="tab.css">
+    <style>
+#stamp {
+  position: absolute;
+  top: -60px;
+  right: 0;
+  width: 120px;            /* fixed square width */
+  height: 120px;           /* fixed square height */
+  display: flex;           /* center content */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 0, 0, 0.1); /* semi-transparent red box */
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid red;   /* border for stamp effect */
+  transform: rotate(-15deg);
+  text-align: center;
+  box-sizing: border-box;
+}
+</style>
   </head>
   <body>
     <div class="wrap" id="invoiceArea">
@@ -147,7 +167,9 @@
   <div class="sig-box" style="text-align: center; position: relative;">
     (Authorised Signatory)
     <!-- Stamp positioned above the signature -->
-    <div id="stamp" class="stamp unpaid" style="position: absolute; top: -60px; right: 0; transform: rotate(-15deg); font-size: 24px; color: red;"> NOT PAID </div>
+    <div id="stamp" class="stamp unpaid">
+  NOT PAID
+</div>
   </div>
 </div>
         </div>
@@ -199,6 +221,7 @@ updateDueAmount();
     </script>
   </body>
 </html>
+
 
 
 
