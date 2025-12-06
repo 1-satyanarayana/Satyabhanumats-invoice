@@ -175,9 +175,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
     <script src="invoice.js"></script>
-    <script src="invoice.expass"></script>
+    <script>
+      function parseRupee(value) {
+  // Remove ₹ symbol and commas, parse as float
+  return parseFloat(value.replace(/[^0-9.]/g, "")) || 0;
+}
+
+function updateDueAmount() {
+  const grandTotal = parseRupee(document.getElementById("grandTotal").textContent);
+  const totalReceived = parseRupee(document.getElementById("totalReceived").textContent);
+  const due = grandTotal - totalReceived;
+  
+  document.getElementById("dueAmount").textContent = `₹ ${due.toFixed(2)}`;
+}
+
+// Update when Total Amount Received is edited
+document.getElementById("totalReceived").addEventListener("input", updateDueAmount);
+
+// Optional: Update on page load or when Grand Total changes dynamically
+updateDueAmount();
+
+    </script>
+  
   </body>
 </html>
+
 
 
 
