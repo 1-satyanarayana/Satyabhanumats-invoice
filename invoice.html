@@ -147,9 +147,21 @@
   <div class="sig-box" style="text-align: center; position: relative;">
     (Authorised Signatory)
     <!-- Stamp positioned above the signature -->
-    <div id="stamp" class="stamp unpaid" style="position: absolute; top: -60px; right: 0; transform: rotate(-15deg); font-size: 24px; color: red;">
-      NOT PAID
-    </div>
+    <div id="stamp" class="stamp paid" style="
+    position: absolute;
+    top: -60px;
+    right: 0;
+    transform: rotate(-15deg);
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
+    border: 3px solid red;
+    border-radius: 50%;
+    padding: 10px 20px;
+    text-align: center;
+">
+    PAID
+</div>
   </div>
 </div>
         </div>
@@ -201,6 +213,7 @@ updateDueAmount();
     </script>
   </body>
 </html>
+
 
 
 
