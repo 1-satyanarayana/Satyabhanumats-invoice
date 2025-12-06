@@ -1,12 +1,3 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyAw3SzDoNomodN-ciAvv_fXZy3h12NtqJw",
-    authDomain: "student-portal-4054b.firebaseapp.com",
-    projectId: "student-portal-4054b",
-    storageBucket: "student-portal-4054b.firebasestorage.app",
-    messagingSenderId: "240497881431",
-    appId: "1:240497881431:web:51448c19b14c841fb10e12"
-};
-connect firebase
 function loadInvoices(filterText = "") {
   const list = JSON.parse(localStorage.getItem("invoices") || "[]");
   const tbody = document.querySelector("#invoiceTable tbody");
@@ -54,3 +45,4 @@ document.getElementById("searchBox").addEventListener("input", function () {
 
 /* INITIAL LOAD */
 loadInvoices();
+
