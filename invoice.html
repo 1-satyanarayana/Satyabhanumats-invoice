@@ -198,96 +198,10 @@ document.getElementById("totalReceived").addEventListener("input", updateDueAmou
 
 // Optional: Update on page load or when Grand Total changes dynamically
 updateDueAmount();
-
     </script>
-  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  // Firebase config
-  const firebaseConfig = {
-    apiKey: "AIzaSyAw3SzDoNomodN-ciAvv_fXZy3h12NtqJw",
-    authDomain: "student-portal-4054b.firebaseapp.com",
-    projectId: "student-portal-4054b",
-    storageBucket: "student-portal-4054b.appspot.com",
-    messagingSenderId: "240497881431",
-    appId: "1:240497881431:web:51448c19b14c841fb10e12"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Get invoice ID if editing
-  const editInvoiceId = localStorage.getItem("editInvoiceId");
-
-  // Save Invoice to Firestore
-  document.getElementById("saveInvoice").addEventListener("click", async () => {
-    const invoiceData = {
-      invoice_no: document.getElementById("invNo").textContent,
-      invoice_date: document.getElementById("invDate").textContent,
-      billing_address: document.querySelector(".wrap .card:nth-child(1) div").textContent,
-      shipping_address: document.querySelector(".wrap .card:nth-child(2) div").textContent,
-      sub_total: document.getElementById("subTotal").textContent,
-      sgst: document.getElementById("sgst").textContent,
-      cgst: document.getElementById("cgst").textContent,
-      round_off: document.getElementById("roundOff").textContent,
-      grand_total: document.getElementById("grandTotal").textContent,
-      total_received: document.getElementById("totalReceived").textContent,
-      due_amount: document.getElementById("dueAmount").textContent,
-      paid: document.getElementById("stamp").classList.contains("paid"),
-      notes: document.querySelector(".totals h5").textContent
-    };
-
-    try {
-      if (editInvoiceId) {
-        await updateDoc(doc(db, "invoices", editInvoiceId), invoiceData);
-        alert("Invoice updated successfully!");
-      } else {
-        await addDoc(collection(db, "invoices"), invoiceData);
-        alert("Invoice saved successfully!");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Error saving invoice!");
-    }
-  });
-
-  // Toggle Paid/Unpaid
-  document.getElementById("togglePaid").addEventListener("click", async () => {
-    const stamp = document.getElementById("stamp");
-    stamp.classList.toggle("paid");
-    stamp.classList.toggle("unpaid");
-    stamp.textContent = stamp.classList.contains("paid") ? "PAID" : "NOT PAID";
-
-    if (editInvoiceId) {
-      await updateDoc(doc(db, "invoices", editInvoiceId), { paid: stamp.classList.contains("paid") });
-    }
-  });
-
-  // If editing, load invoice data
-  if (editInvoiceId) {
-    const docSnap = await getDoc(doc(db, "invoices", editInvoiceId));
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      document.getElementById("invNo").textContent = data.invoice_no;
-      document.getElementById("invDate").textContent = data.invoice_date;
-      document.getElementById("subTotal").textContent = data.sub_total;
-      document.getElementById("sgst").textContent = data.sgst;
-      document.getElementById("cgst").textContent = data.cgst;
-      document.getElementById("roundOff").textContent = data.round_off;
-      document.getElementById("grandTotal").textContent = data.grand_total;
-      document.getElementById("totalReceived").textContent = data.total_received;
-      document.getElementById("dueAmount").textContent = data.due_amount;
-      document.querySelector(".totals h5").textContent = data.notes;
-      document.getElementById("stamp").className = data.paid ? "stamp paid" : "stamp unpaid";
-      document.getElementById("stamp").textContent = data.paid ? "PAID" : "NOT PAID";
-    }
-  }
-</script>
-
   </body>
 </html>
+
 
 
 
