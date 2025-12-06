@@ -11,57 +11,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="invoice.css">
     <link rel="stylesheet" href="tab.css">
-    <style>
-.stamp-paid {
-  position: absolute;
-  top: -60px;
-  right: 0;
-  width: 150px;
-  height: 150px;
-  background: none;
-  border: 4px solid red;
-  border-radius: 50%;
-  box-shadow: 0 0 0 6px red inset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(-15deg);
-  font-family: Arial, sans-serif;
-}
-
-.stamp-paid::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: none;
-  box-shadow: 0 0 0 4px red inset;
-  clip-path: polygon(
-    50% 0%, 54% 7%, 61% 7%, 58% 14%, 61% 21%, 54% 21%, 50% 28%, 
-    46% 21%, 39% 21%, 42% 14%, 39% 7%, 46% 7%
-  );
-}
-
-.stamp-text {
-  text-align: center;
-  color: red;
-}
-
-.top-text,
-.bottom-text {
-  display: block;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.center-text {
-  display: block;
-  font-size: 32px;
-  font-weight: bold;
-  margin: 5px 0;
-}
-</style>
   </head>
   <body>
     <div class="wrap" id="invoiceArea">
@@ -198,13 +147,7 @@
   <div class="sig-box" style="text-align: center; position: relative;">
     (Authorised Signatory)
     <!-- Stamp positioned above the signature -->
-    <div class="stamp-paid">
-  <div class="stamp-text">
-    <span class="top-text">THANK YOU</span>
-    <span class="center-text">PAID</span>
-    <span class="bottom-text">THANK YOU</span>
-  </div>
-</div>
+    <div id="stamp" class="stamp unpaid" style="position: absolute; top: -60px; right: 0; transform: rotate(-15deg); font-size: 24px; color: red;"> NOT PAID </div>
   </div>
 </div>
         </div>
@@ -256,6 +199,7 @@ updateDueAmount();
     </script>
   </body>
 </html>
+
 
 
 
